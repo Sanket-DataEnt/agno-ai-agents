@@ -167,8 +167,22 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
-# Ruff stuff:
-.ruff_cache/
-
 # PyPI configuration file
 .pypirc
+
+# Virtual env
+/bin
+/lib
+/include
+/pyvenv.cfg
+*.pyc
+
+# secrets
+config.json
+
+/share
+
+# langgraph debugging files
+*.pckl
+
+*etc/*
