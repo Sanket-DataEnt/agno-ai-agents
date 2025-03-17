@@ -13,4 +13,6 @@ duckduckgo-search
 yfinance 
 sqlalchemy 
 fastapi[standard]
+groq
+langchain_core
 
