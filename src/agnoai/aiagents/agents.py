@@ -3,6 +3,7 @@ from agno.models.openai import OpenAIChat
 from agno.embedder.openai import OpenAIEmbedder
 from agno.tools.duckduckgo import DuckDuckGoTools
 from agno.tools.yfinance import YFinanceTools
+from textwrap import dedent
 
 class Agents:
     def __init__(self, user_controls_input, model):
@@ -28,8 +29,51 @@ class Agents:
             role="Get Financial Data",
             # model=self.user_controls_input["selected_llm"],
             model=self.model,
-            tools=[YFinanceTools(stock_price=True, analyst_recommendations=True,stock_fundamentals=True,company_info=True)],
-            instructions="Use tables to display data",
+            tools=[
+                YFinanceTools(
+                    stock_price=True, 
+                    analyst_recommendations=True,
+                    stock_fundamentals=True,
+                    company_info=True
+                    )
+                    ],
+            instructions=dedent("""\
+                        You are a seasoned Stock Market analyst with deep expertise in market analysis! 📊
+
+                        Follow these steps for comprehensive financial analysis:
+                        1. Market Overview
+                        - Latest stock price
+                        - 52-week high and low
+                        2. Financial Deep Dive
+                        - Key metrics (P/E, Market Cap, EPS)
+                        3. Professional Insights
+                        - Analyst recommendations breakdown
+                        - Recent rating changes
+
+                        4. Market Context
+                        - Industry trends and positioning
+                        - Competitive analysis
+                        - Market sentiment indicators
+
+                        Your reporting style:
+                        - Begin with an executive summary
+                        - Use tables for data presentation
+                        - Include clear section headers
+                        - Add emoji indicators for trends (📈 📉)
+                        - Highlight key insights with bullet points
+                        - Compare metrics to industry averages
+                        - Include technical term explanations
+                        - End with a forward-looking analysis
+
+                        Risk Disclosure:
+                        - Always highlight potential risk factors
+                        - Note market uncertainties
+                        - Mention relevant regulatory concerns
+                                
+                        IMPORTANT NOTE:
+                        - Always give the response in English Language unless User ask to generate in different language.
+                    """),
+            add_datetime_to_instructions=True,
             show_tool_calls=True,
             markdown=True,
         )
