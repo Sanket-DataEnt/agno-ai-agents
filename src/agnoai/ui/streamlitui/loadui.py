@@ -63,7 +63,15 @@ class LoadStreamlitUI:
 
             if "state" not in st.session_state:
                 st.session_state.state = self.initialize_session()
-
+                
+        if self.user_controls["selected_usecase"] == "Stock Analyser":
+            # Streamlit Interface
+            st.title("📈 Stock Analysis Expert")
+            # Description of the application
+            st.write("""
+            Welcome to the Stock Analysis Expert dashboard! This interactive app helps you analyze stock performance using key technical indicators. 
+            You can explore historical stock data, visualize trends, and make informed investment decisions.
+            """)
         
 
         return self.user_controls

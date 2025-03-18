@@ -40,10 +40,15 @@ def load_agno_agenticai_app():
                     st.error("Error: LLM model could not be initialized.")
                     return
             
+            usecase = user_input.get('selected_usecase')
+            if not usecase:
+                    st.error("Error: No use case selected.")
+                    return
+            
             ### Agents
             agents = Agents(user_input, model)
             agent_team = agents.agent_team()
-            DisplayResultStreamlit(agent_team, user_message).display_result_on_ui()
+            DisplayResultStreamlit(usecase, agent_team, user_message).display_result_on_ui()
             
         
         except Exception as e:
