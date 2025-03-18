@@ -73,7 +73,13 @@ class LoadStreamlitUI:
             You can explore historical stock data, visualize trends, and make informed investment decisions.
             Please mention the Stock ticker/symbol for the analysis.
                      
-            **Example Question: Analyze the market outlook and financial performance of AI semiconductor company NVDA And Tesla And sugggest whether I have to buy or not?**
+            **Example Questions:**
+            - Analyze the market outlook and financial performance of AI semiconductor company NVDA And Tesla And sugggest whether I have to buy or not?
+            - What's the latest news and financial performance of Apple (AAPL)?
+            - Give me a detailed analysis of Tesla's (TSLA) current market position
+            - How are Microsoft's (MSFT) financials looking? Include analyst recommendations
+            - Analyze NVIDIA's (NVDA) stock performance and future outlook
+            - What's the market saying about Amazon's (AMZN) latest quarter?
             """)
         
 
