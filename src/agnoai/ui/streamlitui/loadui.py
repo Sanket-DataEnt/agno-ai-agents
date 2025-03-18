@@ -81,6 +81,23 @@ class LoadStreamlitUI:
             - Analyze NVIDIA's (NVDA) stock performance and future outlook
             - What's the market saying about Amazon's (AMZN) latest quarter?
             """)
+
+        elif self.user_controls["selected_usecase"] == "YouTube Content Analyser":
+            st.title("Youtube Video Analyser")
+            st.write("""
+            Welcome to the Youtube Video Analyst! that provides detailed video breakdowns, timestamps, and summaries. 
+                     Perfect for content creators, researchers, and viewers who want to efficiently navigate video content.
+
+            **Example Questions :**
+            - Analyze this tech review: [video_url]
+            - Get timestamps for this coding tutorial: [video_url]
+            - Break down the key points of this lecture: [video_url]
+            - Summarize the main topics in this documentary: [video_url]
+            - Create a study guide from this educational video: [video_url]
+                     
+            **Note :** - OpenAI models works fine with YouTube Analyst.
+                     
+            """)
         
 
         return self.user_controls

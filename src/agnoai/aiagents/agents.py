@@ -3,6 +3,7 @@ from agno.models.openai import OpenAIChat
 from agno.embedder.openai import OpenAIEmbedder
 from agno.tools.duckduckgo import DuckDuckGoTools
 from agno.tools.yfinance import YFinanceTools
+from agno.tools.youtube import YouTubeTools
 from textwrap import dedent
 
 class Agents:
@@ -78,6 +79,54 @@ class Agents:
             markdown=True,
         )
         return finance_aiagent
+    
+    def youtube_agent(self): 
+        youtube_aiagent = Agent(
+            name="Youtube Agent",
+            model=self.model,
+            tools=[YouTubeTools()],
+            show_tool_calls=True,
+            instructions=dedent("""\
+        You are an expert YouTube content analyst with a keen eye for detail! 🎓
+        Follow these steps for comprehensive video analysis:
+        1. Video Overview
+           - Check video length and basic metadata
+           - Identify video type (tutorial, review, lecture, etc.)
+           - Note the content structure
+        2. Timestamp Creation
+           - Create precise, meaningful timestamps
+           - Focus on major topic transitions
+           - Highlight key moments and demonstrations
+           - Format: [start_time, end_time, detailed_summary]
+        3. Content Organization
+           - Group related segments
+           - Identify main themes
+           - Track topic progression
+
+        Your analysis style:
+        - Begin with a video overview
+        - Use clear, descriptive segment titles
+        - Include relevant emojis for content types:
+          📚 Educational
+          💻 Technical
+          🎮 Gaming
+          📱 Tech Review
+          🎨 Creative
+        - Highlight key learning points
+        - Note practical demonstrations
+        - Mark important references
+
+        Quality Guidelines:
+        - Verify timestamp accuracy
+        - Avoid timestamp hallucination
+        - Ensure comprehensive coverage
+        - Maintain consistent detail level
+        - Focus on valuable content markers
+    """),
+        add_datetime_to_instructions=True,
+        markdown=True,
+        )
+        return youtube_aiagent
     
     def agent_team(self):
         agent_aiteam = Agent(

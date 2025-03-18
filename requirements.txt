@@ -15,4 +15,4 @@ sqlalchemy
 fastapi[standard]
 groq
 langchain_core
-
+youtube_transcript_api

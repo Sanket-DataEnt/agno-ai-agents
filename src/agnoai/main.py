@@ -47,8 +47,11 @@ def load_agno_agenticai_app():
             
             ### Agents
             agents = Agents(user_input, model)
-            agent_team = agents.agent_team()
-            DisplayResultStreamlit(usecase, agent_team, user_message).display_result_on_ui()
+            if usecase=="Stock Analyser":
+                 final_agent = agents.agent_team()
+            elif usecase=="YouTube Content Analyser":
+                 final_agent = agents.youtube_agent()
+            DisplayResultStreamlit(usecase, final_agent, user_message).display_result_on_ui()
             
         
         except Exception as e:
