@@ -15,7 +15,7 @@ class Config:
         return self.config["DEFAULT"].get("GROQ_MODEL_OPTIONS").split(", ")
     
     def get_openai_model_options(self):
-        return self.config["DEFAULT"].get("OPENAI_MODEL_OPTIONS")
+        return self.config["DEFAULT"].get("OPENAI_MODEL_OPTIONS").split(", ")
 
     def get_page_title(self):
         return self.config["DEFAULT"].get("PAGE_TITLE")   
