@@ -84,6 +84,13 @@ class LoadStreamlitUI:
                 # Validate API key
                 if not self.user_controls["EXA_API_KEY"]:
                     st.warning("⚠️ Please enter your EXA API key to proceed. Don't have? refer : https://dashboard.exa.ai/api-keys ")
+            
+            elif self.user_controls["selected_usecase"] == "Books Recommender":
+                self.user_controls["EXA_API_KEY"] = st.session_state["EXA_API_KEY"] = st.text_input("EXA API Key",
+                                                                                                      type="password")
+                # Validate API key
+                if not self.user_controls["EXA_API_KEY"]:
+                    st.warning("⚠️ Please enter your EXA API key to proceed. Don't have? refer : https://dashboard.exa.ai/api-keys ")
 
 
             if "state" not in st.session_state:
@@ -177,6 +184,22 @@ class LoadStreamlitUI:
             - Find me Korean movies similar to Parasite and Oldboy
             - Recommend family-friendly adventure movies with good ratings
             - What are the upcoming superhero movies in the next 6 months?
+            """)
+
+        elif self.user_controls["selected_usecase"] == "Books Recommender":
+            st.title("Your Books Recommendation Assistant")
+            st.write("""
+            Welcome to the Books Recommender! that provides comprehensive literary suggestions based on your preferences. 
+                     The agent combines book databases, ratings, reviews, and upcoming releases to deliver personalized reading recommendations.
+
+            **Example prompts to try:**
+
+            - I loved ‘The Seven Husbands of Evelyn Hugo’ and ‘Daisy Jones & The Six’, what should I read next?
+            - Recommend me some psychological thrillers like ‘Gone Girl’ and ‘The Silent Patient’
+            - What are the best fantasy books released in the last 2 years?
+            - I enjoy historical fiction with strong female leads, any suggestions?
+            - Looking for science books that read like novels, similar to ‘The Immortal Life of Henrietta Lacks‘
+
             """)
         
 
