@@ -92,6 +92,13 @@ class LoadStreamlitUI:
                 if not self.user_controls["EXA_API_KEY"]:
                     st.warning("⚠️ Please enter your EXA API key to proceed. Don't have? refer : https://dashboard.exa.ai/api-keys ")
 
+            elif self.user_controls["selected_usecase"] == "Travel Advisor":
+                self.user_controls["EXA_API_KEY"] = st.session_state["EXA_API_KEY"] = st.text_input("EXA API Key",
+                                                                                                      type="password")
+                # Validate API key
+                if not self.user_controls["EXA_API_KEY"]:
+                    st.warning("⚠️ Please enter your EXA API key to proceed. Don't have? refer : https://dashboard.exa.ai/api-keys ")
+
 
             if "state" not in st.session_state:
                 st.session_state.state = self.initialize_session()
@@ -199,6 +206,23 @@ class LoadStreamlitUI:
             - What are the best fantasy books released in the last 2 years?
             - I enjoy historical fiction with strong female leads, any suggestions?
             - Looking for science books that read like novels, similar to ‘The Immortal Life of Henrietta Lacks‘
+
+            """)
+
+        elif self.user_controls["selected_usecase"] == "Travel Advisor":
+            st.title("Your Personal Travel Advisor")
+            st.write("""
+            Welcome to the Travel Asvisor! that  provides comprehensive itineraries and recommendations. 
+                     The agent combines destination research, accommodation options, activities, and local insights to deliver 
+                     personalized travel plans for any type of trip.
+
+            **Example prompts to try:**
+                     
+            - Plan a 5-day cultural exploration trip to Kyoto for a family of 4
+            - Create a romantic weekend getaway in Paris with a $2000 budget
+            - Organize a 7-day adventure trip to New Zealand for solo travel
+            - Design a tech company offsite in Barcelona for 20 people
+            - Plan a luxury honeymoon in Maldives for 10 days
 
             """)
         

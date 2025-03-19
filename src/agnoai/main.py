@@ -68,6 +68,8 @@ def load_agno_agenticai_app():
                  final_agent=agents.movieRecommender_agent()
             elif usecase=="Books Recommender":
                  final_agent=agents.book_recommendation_agent()
+            elif usecase=="Travel Advisor":
+                 final_agent=agents.travel_agent()
             
 
             DisplayResultStreamlit(usecase, final_agent, user_message).display_result_on_ui()
