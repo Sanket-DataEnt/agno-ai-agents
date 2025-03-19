@@ -3,7 +3,7 @@ import json
 from src.agnoai.ui.streamlitui.loadui import LoadStreamlitUI
 from src.agnoai.LLMs.groqllm import GroqLLM
 from src.agnoai.LLMs.openaillm import OpenAILLM
-from src.agnoai.LLMs.ollamallm import OllamaLLM
+# from src.agnoai.LLMs.ollamallm import OllamaLLM
 from src.agnoai.aiagents.agents import Agents
 from src.agnoai.ui.streamlitui.display_result import DisplayResultStreamlit
 
