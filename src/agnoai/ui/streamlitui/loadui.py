@@ -77,6 +77,13 @@ class LoadStreamlitUI:
                 # Validate API key
                 if not self.user_controls["EXA_API_KEY"]:
                     st.warning("⚠️ Please enter your EXA API key to proceed. Don't have? refer : https://dashboard.exa.ai/api-keys ")
+            
+            elif self.user_controls["selected_usecase"] == "Movie Recommender":
+                self.user_controls["EXA_API_KEY"] = st.session_state["EXA_API_KEY"] = st.text_input("EXA API Key",
+                                                                                                      type="password")
+                # Validate API key
+                if not self.user_controls["EXA_API_KEY"]:
+                    st.warning("⚠️ Please enter your EXA API key to proceed. Don't have? refer : https://dashboard.exa.ai/api-keys ")
 
 
             if "state" not in st.session_state:
@@ -155,6 +162,21 @@ class LoadStreamlitUI:
              - Suggest healthy breakfast options with oats and fruits
              - What can I make with leftover turkey and potatoes?
              - Need a quick dessert recipe using chocolate and bananas
+            """)
+
+        elif self.user_controls["selected_usecase"] == "Movie Recommender":
+            st.title("Your Movie Recommendation Assistant")
+            st.write("""
+            Welcome to the Movie Recommender! that provides comprehensive film suggestions based on your preferences.
+                      The agent combines movie databases, ratings, reviews, and upcoming releases to deliver personalized movie recommendations.
+            
+            **Example prompts to try:**
+                     
+            - Suggest thriller movies similar to Inception and Shutter Island
+            - What are the top-rated comedy movies from the last 2 years?
+            - Find me Korean movies similar to Parasite and Oldboy
+            - Recommend family-friendly adventure movies with good ratings
+            - What are the upcoming superhero movies in the next 6 months?
             """)
         
 
