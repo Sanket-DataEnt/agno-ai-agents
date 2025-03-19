@@ -16,3 +16,5 @@ fastapi[standard]
 groq
 langchain_core
 youtube_transcript_api
+newspaper4k
+lxml_html_clean

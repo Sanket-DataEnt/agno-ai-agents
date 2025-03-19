@@ -98,6 +98,30 @@ class LoadStreamlitUI:
             **Note :** - OpenAI models works fine with YouTube Analyst.
                      
             """)
+
+        elif self.user_controls["selected_usecase"] == "Research Agent":
+            st.title("Research Agent")
+            st.write("""
+            Welcome to the News Research Agent! that combines web search capabilities with professional journalistic writing skills. 
+                     The agent performs comprehensive research using multiple sources, fact-checks information, and delivers well-structured, 
+                     TOI-style articles on any topic.
+                     
+            **Key capabilities:**
+
+            - Advanced web search across multiple sources
+            - Content extraction and analysis
+            - Cross-reference verification
+            - Professional journalistic writing
+            - Balanced and objective reporting
+            
+            **Example prompts to try:**
+
+            - Analyze the impact of AI on healthcare delivery and patient outcomes
+            - Report on the latest breakthroughs in quantum computing
+            - Investigate the global transition to renewable energy sources
+            - Explore the evolution of cybersecurity threats and defenses
+            - Research the development of autonomous vehicle technology        
+            """)
         
 
         return self.user_controls
