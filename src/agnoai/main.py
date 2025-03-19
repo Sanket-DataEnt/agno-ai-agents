@@ -3,6 +3,7 @@ import json
 from src.agnoai.ui.streamlitui.loadui import LoadStreamlitUI
 from src.agnoai.LLMs.groqllm import GroqLLM
 from src.agnoai.LLMs.openaillm import OpenAILLM
+from src.agnoai.LLMs.ollamallm import OllamaLLM
 from src.agnoai.aiagents.agents import Agents
 from src.agnoai.ui.streamlitui.display_result import DisplayResultStreamlit
 
@@ -39,6 +40,14 @@ def load_agno_agenticai_app():
                 if not model:
                     st.error("Error: LLM model could not be initialized.")
                     return
+                
+            # elif user_input['selected_llm']=='Ollama':
+            #     obj_llm_config = OllamaLLM(user_controls_input=user_input)
+            #     model = obj_llm_config.get_llm_model()
+
+            #     if not model:
+            #         st.error("Error: LLM model could not be initialized.")
+            #         return
             
             usecase = user_input.get('selected_usecase')
             if not usecase:
@@ -53,6 +62,8 @@ def load_agno_agenticai_app():
                  final_agent = agents.youtube_agent()
             elif usecase=="Research Agent":
                  final_agent = agents.research_agent()
+            elif usecase=="Cooking Expert Agent":
+                 final_agent = agents.recipe_agent()
             DisplayResultStreamlit(usecase, final_agent, user_message).display_result_on_ui()
             
         

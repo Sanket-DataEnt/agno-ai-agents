@@ -57,9 +57,27 @@ class LoadStreamlitUI:
                 # Validate API key
                 if not self.user_controls["OPENAI_API_KEY"]:
                     st.warning("⚠️ Please enter your OpenAI API key to proceed. Don't have? refer : https://platform.openai.com/api-keys ")
+            
+            # elif self.user_controls["selected_llm"] == 'Ollama':
+            #     # Model selection
+            #     model_options = self.config.get_ollama_model_options()
+            #     self.user_controls["selected_ollama_model"] = st.selectbox("Select Model", model_options)
+
+            #     # Download model with progress bar
+            #     if st.button("Download Model"):
+            #         self.download_model_with_progress_bar(self.user_controls["selected_ollama_model"])
+
 
             # Use case selection
             self.user_controls["selected_usecase"] = st.selectbox("Select Usecases", usecase_options)
+
+            if self.user_controls["selected_usecase"] == "Cooking Expert Agent":
+                self.user_controls["EXA_API_KEY"] = st.session_state["EXA_API_KEY"] = st.text_input("EXA API Key",
+                                                                                                      type="password")
+                # Validate API key
+                if not self.user_controls["EXA_API_KEY"]:
+                    st.warning("⚠️ Please enter your EXA API key to proceed. Don't have? refer : https://dashboard.exa.ai/api-keys ")
+
 
             if "state" not in st.session_state:
                 st.session_state.state = self.initialize_session()
@@ -121,6 +139,22 @@ class LoadStreamlitUI:
             - Investigate the global transition to renewable energy sources
             - Explore the evolution of cybersecurity threats and defenses
             - Research the development of autonomous vehicle technology        
+            """)
+
+        elif self.user_controls["selected_usecase"] == "Cooking Expert Agent":
+            st.title("Your Personal Chef")
+            st.write("""
+            Welcome to the Cooking Expert Agent! that provides detailed, personalized recipes based on your ingredients, 
+                     dietary preferences, and time constraints. The agent combines culinary knowledge, nutritional data, 
+                     and cooking techniques to deliver comprehensive cooking instructions.
+
+            **Example prompts to try:**
+            
+             - I have chicken, rice, and vegetables. What can I make in 30 minutes?
+             - Create a vegetarian pasta recipe with mushrooms and spinach
+             - Suggest healthy breakfast options with oats and fruits
+             - What can I make with leftover turkey and potatoes?
+             - Need a quick dessert recipe using chocolate and bananas
             """)
         
 

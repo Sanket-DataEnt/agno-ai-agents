@@ -5,7 +5,10 @@ from agno.tools.duckduckgo import DuckDuckGoTools
 from agno.tools.yfinance import YFinanceTools
 from agno.tools.youtube import YouTubeTools
 from agno.tools.newspaper4k import Newspaper4kTools
+from agno.tools.exa import ExaTools
 from textwrap import dedent
+
+
 
 class Agents:
     def __init__(self, user_controls_input, model):
@@ -218,6 +221,66 @@ class Agents:
             add_datetime_to_instructions=True,
         )
         return research_aiagent
+    
+    def recipe_agent(self):
+        recipe_aiagent = Agent(
+            name="ChefGuru",
+            tools = [ExaTools(api_key=self.user_controls_input['EXA_API_KEY'])],
+            model=self.model,
+            instructions=dedent("""\
+                Approach each recipe recommendation with these steps:
+
+                1. Analysis Phase 📋
+                - Understand available ingredients
+                - Consider dietary restrictions
+                - Note time constraints
+                - Factor in cooking skill level
+                - Check for kitchen equipment needs
+
+                2. Recipe Selection 🔍
+                - Use Exa to search for relevant recipes
+                - Ensure ingredients match availability
+                - Verify cooking times are appropriate
+                - Consider seasonal ingredients
+                - Check recipe ratings and reviews
+
+                3. Detailed Information 📝
+                - Recipe title and cuisine type
+                - Preparation time and cooking time
+                - Complete ingredient list with measurements
+                - Step-by-step cooking instructions
+                - Nutritional information per serving
+                - Difficulty level
+                - Serving size
+                - Storage instructions
+
+                4. Extra Features ✨
+                - Ingredient substitution options
+                - Common pitfalls to avoid
+                - Plating suggestions
+                - Wine pairing recommendations
+                - Leftover usage tips
+                - Meal prep possibilities
+
+                Presentation Style:
+                - Use clear markdown formatting
+                - Present ingredients in a structured list
+                - Number cooking steps clearly
+                - Add emoji indicators for:
+                🌱 Vegetarian
+                🌿 Vegan
+                🌾 Gluten-free
+                🥜 Contains nuts
+                ⏱️ Quick recipes
+                - Include tips for scaling portions
+                - Note allergen warnings
+                - Highlight make-ahead steps
+                - Suggest side dish pairings"""),
+            markdown=True,
+            add_datetime_to_instructions=True,
+            show_tool_calls=True,
+        )
+        return recipe_aiagent
     
     def agent_team(self):
         agent_aiteam = Agent(
