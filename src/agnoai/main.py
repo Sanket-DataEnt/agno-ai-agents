@@ -6,6 +6,7 @@ from src.agnoai.LLMs.openaillm import OpenAILLM
 # from src.agnoai.LLMs.ollamallm import OllamaLLM
 from src.agnoai.aiagents.agents import Agents
 from src.agnoai.ui.streamlitui.display_result import DisplayResultStreamlit
+from src.agnoai.aiagents.multiagents import MultiAgents
 
 # Main Function 
 def load_agno_agenticai_app():
@@ -56,8 +57,9 @@ def load_agno_agenticai_app():
             
             ### Agents
             agents = Agents(user_input, model)
+            multi_agents = MultiAgents(agents, model)
             if usecase=="Stock Analyser":
-                 final_agent = agents.agent_team()
+                 final_agent = multi_agents.agent_team()
             elif usecase=="YouTube Content Analyser":
                  final_agent = agents.youtube_agent()
             elif usecase=="Research Agent":
@@ -70,6 +72,8 @@ def load_agno_agenticai_app():
                  final_agent=agents.book_recommendation_agent()
             elif usecase=="Travel Advisor":
                  final_agent=agents.travel_agent()
+            elif usecase=="Team Discussion":
+                 final_agent = multi_agents.discussion_team()
             
 
             DisplayResultStreamlit(usecase, final_agent, user_message).display_result_on_ui()

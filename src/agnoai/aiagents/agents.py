@@ -6,6 +6,9 @@ from agno.tools.yfinance import YFinanceTools
 from agno.tools.youtube import YouTubeTools
 from agno.tools.newspaper4k import Newspaper4kTools
 from agno.tools.exa import ExaTools
+from agno.tools.googlesearch import GoogleSearchTools
+from agno.tools.hackernews import HackerNewsTools
+from agno.tools.arxiv import ArxivTools
 from textwrap import dedent
 
 
@@ -514,15 +517,70 @@ class Agents:
         )
         return travel_aiagent
     
-    def agent_team(self):
-        agent_aiteam = Agent(
-        team = [self.web_agent(), self.finance_agent()],
-        model=self.model,
-        instructions=["Always include sources", "Use tables to display data"],
-        show_tool_calls=True,
-        markdown=True,
+    def reddit_researcher(self):
+        redit_aiagent = Agent(
+            name="Reddit Researcher",
+            role="Research a topic on Reddit",
+            model=self.model,
+            tools=[DuckDuckGoTools()],
+              add_name_to_instructions=True,
+            instructions=dedent("""
+                You are a Reddit researcher.
+                You will be given a topic to research on Reddit.
+                You will need to find the most relevant posts on Reddit.
+            """),
         )
-        return agent_aiteam
+        return redit_aiagent
     
+    def hackernews_researcher(self):
+        hackernews_aiagent = Agent(
+            name="HackerNews Researcher",
+            role="Research a topic on HackerNews.",
+            model=self.model,
+            tools=[HackerNewsTools()],
+            add_name_to_instructions=True,
+            instructions=dedent("""
+                You are a HackerNews researcher.
+                You will be given a topic to research on HackerNews.
+                You will need to find the most relevant posts on HackerNews.
+            """),
+        )
+        return hackernews_aiagent
+    
+    def academic_paper_researcher(self):
+        academic_paper_aiagent = Agent(
+            name="Academic Paper Researcher",
+            role="Research academic papers and scholarly content",
+            model=self.model,
+            tools=[GoogleSearchTools(), ArxivTools()],
+            add_name_to_instructions=True,
+            instructions=dedent("""
+                You are a academic paper researcher.
+                You will be given a topic to research in academic literature.
+                You will need to find relevant scholarly articles, papers, and academic discussions.
+                Focus on peer-reviewed content and citations from reputable sources.
+                Provide brief summaries of key findings and methodologies.
+                """)
+        )
+
+        return academic_paper_aiagent
+    
+    def twitter_researcher(self):
+        twitter_aiagent = Agent(
+            name="Twitter Researcher",
+            role="Research trending discussions and real-time updates",
+            model=self.model,
+            tools=[DuckDuckGoTools()],
+            add_name_to_instructions=True,
+            instructions=dedent("""
+                You are a Twitter/X researcher.
+                You will be given a topic to research on Twitter/X.
+                You will need to find trending discussions, influential voices, and real-time updates.
+                Focus on verified accounts and credible sources when possible.
+                Track relevant hashtags and ongoing conversations.
+            """),
+
+        )
+        return twitter_aiagent
     
 

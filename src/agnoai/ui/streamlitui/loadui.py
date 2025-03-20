@@ -225,6 +225,18 @@ class LoadStreamlitUI:
             - Plan a luxury honeymoon in Maldives for 10 days
 
             """)
+            
+        elif self.user_controls["selected_usecase"] == "Team Discussion":
+            st.title("Team Discussion Agent")
+            st.write("""
+            Welcome to the Team Discussion Agent! that facilitates collaborative decision-making and knowledge sharing among team members. 
+                     The agent combines research capabilities, discussion moderation, and consensus-building to help teams achieve their goals.
+                     
+            **Example prompts to try:**
+
+            - Start the discussion on the topic: 'What is the best way to learn to code?'       
+            """)
+
         
 
         return self.user_controls
